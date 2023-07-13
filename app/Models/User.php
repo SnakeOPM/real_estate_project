@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User_type::class, 'user_type_id', 'id');
     }
+
+    public function flats()
+    {
+        return $this->hasMany(Flat::class, 'owner_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'post_owner_id', 'id');
+    }
 }
