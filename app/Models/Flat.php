@@ -17,6 +17,11 @@ class Flat extends Model
 
     public function owner()
     {
-        $this->belongsTo(User::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
+    }
+
+    public function parties()
+    {
+        return $this->belongsToMany(Party::class, 'flat_parties', 'flat_id', 'party_id');
     }
 }
