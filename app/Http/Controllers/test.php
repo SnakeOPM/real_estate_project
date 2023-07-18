@@ -7,12 +7,14 @@ use App\Models\Party;
 use App\Models\User;
 use App\Models\User_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use function Termwind\render;
 
 class test extends Controller
 {
     public function __invoke()
     {
-        $data = Party::find(3);
-        dd($data->flats);
+        $image = Storage::disk('s3')->get('photo_2023-07-14_07-50-40.jpg');
+        return response($image)->header('Content-Type', 'image/png');
     }
 }
