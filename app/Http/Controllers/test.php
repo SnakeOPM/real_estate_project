@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\User_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use function Termwind\render;
 
 class test extends Controller
 {

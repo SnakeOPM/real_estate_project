@@ -24,4 +24,9 @@ class Flat extends Model
     {
         return $this->belongsToMany(Party::class, 'flat_parties', 'flat_id', 'party_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(FlatImages::class, 'flat_id', 'id');
+    }
 }
