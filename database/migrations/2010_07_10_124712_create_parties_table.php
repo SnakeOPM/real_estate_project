@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('invite_token');
             $table->unsignedBigInteger('flat_prefer_id');
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }

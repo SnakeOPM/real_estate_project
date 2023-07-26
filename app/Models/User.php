@@ -90,6 +90,10 @@ class User extends Authenticatable
 
     public function images()
     {
-        $this->hasMany(UserImage::class, 'user_id', 'id');
+        return $this->hasMany(UserImage::class, 'user_id', 'id');
+    }
+
+    public function avatar(){
+        return $this->hasMany(UserAvatar::class, 'avatar_id', 'id');
     }
 }
