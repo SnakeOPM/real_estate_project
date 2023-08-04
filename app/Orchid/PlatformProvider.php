@@ -42,7 +42,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Example Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')
-                ->badge(fn () => 6),
+                ->badge(fn() => 6),
 
             Menu::make('Form Elements')
                 ->icon('bs.journal')
@@ -85,7 +85,12 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+                ->badge(fn() => Dashboard::version(), Color::DARK)
+                ->divider(),
+
+            Menu::make('Create/edit User')
+            ->route('platform.user.create')
+            ->title('CRUD'),
         ];
     }
 

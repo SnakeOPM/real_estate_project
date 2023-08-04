@@ -28,10 +28,10 @@ class CreateRequest extends FormRequest
             'avatar' => 'image',
             'description' => 'string',
             'email' => 'required|email',
-            'phone' => 'required|max:11',
-            'password' => 'password',
-            'user_type_id' => 'integer',
-            'party_id' => 'integer',
+            'phone' => 'required|max:16',
+            'password' => 'string',
+            'user_type_id' => '',
+            'party_id' => '',
 
         ];
     }

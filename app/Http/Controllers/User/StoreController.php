@@ -12,16 +12,14 @@ use App\Models\UserAvatar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(CreateRequest $request)
     {
         $data = $request->validated();
         $file = $request->file('avatar');
-        Storage::disk('s3')->put('/avatars', $file);
-        UserAvatar::firstOrCreate($file->getClientOriginalName());
-        unset($data['avatar']);
-        $data['avatar'] = $file->getClientOriginalName();
-        User::create($data);
+        $this->service->store($data, $file);
+
+        return dd('переделай дебил блин');
     }
 }
