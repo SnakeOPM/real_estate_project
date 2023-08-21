@@ -19,8 +19,14 @@ class Service
         User::create($data);
     }
 
-    public function update($data)
+    public function update(User $user ,$data, $file = null)
     {
-
+        if ($file != null){
+            Storage::disk('s3')->put('/avatars', $file);
+            UserAvatar::firstOrCreate($file->getClientOriginalName());
+            $data['avatar_id'] = UserAvatar::where('name', 'like', $file->getClientOriginalName())->first();
+        }
+        unset($data['avatar']);
+        $user->update($data);
     }
 }

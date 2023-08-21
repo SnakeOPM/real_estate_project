@@ -8,15 +8,12 @@ use App\Models\User;
 use App\Models\User_type;
 use App\Services\User\Service;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
-use App\Http\Controllers\User\BaseController;
 
 class UserCreateScreen extends Screen
 {
