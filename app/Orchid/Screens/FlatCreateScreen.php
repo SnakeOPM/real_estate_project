@@ -2,9 +2,12 @@
 
 namespace App\Orchid\Screens;
 
+use App\Http\Requests\Flat\CreateRequest;
 use App\Models\Flat;
 use App\Models\User;
+use App\Services\Flat\Service;
 use Illuminate\Validation\Rules\In;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Components\Cells\Boolean;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Input;
@@ -22,10 +25,11 @@ class FlatCreateScreen extends Screen
      */
 
     public $flat;
+
     public function query(Flat $flat): iterable
     {
         return [
-            'flat'=> $flat
+            'flat' => $flat
         ];
     }
 
@@ -46,7 +50,17 @@ class FlatCreateScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Button::make('Create Flat')
+                ->icon('pencil')
+                ->method('createFlat')
+                ->canSee(!$this->flat->exists),
+
+            Button::make('Edit user')
+                ->icon('note')
+                ->method('createOrUpdate')
+                ->canSee($this->flat->exists)
+        ];
     }
 
     /**
@@ -59,37 +73,43 @@ class FlatCreateScreen extends Screen
         return [
             Layout::rows([
                 Input::make('name')
-                ->title('name')
-                ->required()
-                ->placeholder('Enter name'),
+                    ->title('name')
+                    ->required()
+                    ->placeholder('Enter name'),
 
                 TextArea::make('description')
-                ->title('description')
-                ->placeholder('description'),
+                    ->title('description')
+                    ->placeholder('description'),
 
                 Input::make('address')
-                ->maxlength(255)
-                ->required(),
+                    ->maxlength(255)
+                    ->required(),
 
                 Input::make('rooms count')
-                ->max(10),
+                    ->max(10),
 
                 Input::make('square')
-                ->required()
-                ->max(120),
+                    ->required()
+                    ->max(120),
 
                 CheckBox::make('pets')
-                ->title('Pets allowed'),
+                    ->title('Pets allowed'),
                 Input::make('type_id')
-                ->title('type of flat')
-                ->required(),
+                    ->title('type of flat')
+                    ->required(),
                 Input::make('agency_id')
-                ->title('agency id'),
+                    ->title('agency id'),
                 Relation::make('owner_id')
-                ->title('Owner id')
-                ->fromModel(User::class, 'name', 'name'),
+                    ->title('Owner id')
+                    ->fromModel(User::class, 'name', 'name'),
 
             ])
         ];
+    }
+
+    public function createFlat(CreateRequest $request, Service $service)
+    {
+        $data = $request->validated();
+        $service->store($data);
     }
 }
