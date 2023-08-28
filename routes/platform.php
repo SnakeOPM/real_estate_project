@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 use App\Http\Controllers\User\StoreController;
 use App\Orchid\Screens\UserCreateScreen;
+use App\Orchid\Screens\FlatCreateScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,7 @@ Route::screen('/charts/examples/charts', ExampleChartsScreen::class)->name('plat
 Route::screen('/cards/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 
 Route::screen('/user/create', UserCreateScreen::class)->name('platform.user.create');
+Route::screen('/flat/create', FlatCreateScreen::class)->name('platform.flat.create');
 
 
 // TODO: complete the user create screen

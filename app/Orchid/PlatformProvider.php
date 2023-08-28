@@ -91,6 +91,9 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Create/edit User')
             ->route('platform.user.create')
             ->title('CRUD'),
+
+            Menu::make('Create/edit Flat ')
+            ->route('platform.flat.create'),
         ];
     }
 

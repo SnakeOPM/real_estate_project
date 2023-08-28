@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Flat;
 
-use App\Services\User\Service;
+use App\Http\Controllers\Controller;
+use App\Services\Flat\Service;
 
 class BaseController extends Controller
 {

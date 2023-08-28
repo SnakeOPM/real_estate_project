@@ -95,7 +95,7 @@ class UserCreateScreen extends Screen
 
                 Picture::make('avatar')
                     ->title("User's avatar")
-                ->storage('s3')->getOldName(),
+                ->storage('s3'),
 
                 TextArea::make('description')
                     ->title('about')

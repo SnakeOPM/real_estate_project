@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Flat;
 
-use App\Http\Controllers\BaseController;
 use App\Http\Requests\Flat\CreateRequest;
 
 class StoreController extends BaseController

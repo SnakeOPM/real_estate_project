@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\BaseController;
 use App\Http\Requests\User\CreateRequest;
 
 class StoreController extends BaseController
