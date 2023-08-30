@@ -13,7 +13,6 @@ class test extends Controller
 {
     public function __invoke()
     {
-        $image = Storage::disk('s3')->get('photo_2023-07-14_07-50-40.jpg');
-        return response($image)->header('Content-Type', 'image/png');
+        return view('test');
     }
 }
