@@ -166,4 +166,9 @@ class User extends Authenticatable
     public function avatar(){
         return $this->hasMany(UserAvatar::class, 'avatar_id', 'id');
     }
+
+    public function party()
+    {
+        return $this->belongsTo(Party::class, 'id', 'id');
+    }
 }

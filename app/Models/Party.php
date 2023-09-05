@@ -37,4 +37,9 @@ class Party extends Model
     {
         return $this->belongsToMany(Flat::class, 'flat_parties', 'party_id', 'flat_id');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id', 'id');
+    }
 }
