@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Party\IndexController;
+use \App\Http\Controllers\Party\CreateController;
+use App\Http\Controllers\Party\ShowController;
+use App\Http\Controllers\Party\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/party', IndexController::class);
+Route::get('/parties', IndexController::class)->name('party.index');
+Route::get('/parties/create', CreateController::class)->name('party.create');
+Route::post('/parties', StoreController::class);
+Route::get('/parties/{party}', ShowController::class)->name('party.show');
+Route::get('/parties/{party}/edit');
+
 
 require __DIR__.'/auth.php';
