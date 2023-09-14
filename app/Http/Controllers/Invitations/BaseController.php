@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Party;
+namespace App\Http\Controllers\Invitations;
 
 use App\Http\Controllers\Controller;
-use App\Services\Party\Service;
+use App\Services\Invitations\Service;
 
 class BaseController extends Controller
 {
