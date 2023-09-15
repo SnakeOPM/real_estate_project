@@ -12,9 +12,9 @@ class ShowController extends BaseController
 {
     public function __invoke($token)
     {
-        $party = Party::where('invite_token', $token)->first();
+        $party = $this->service->getPartyData($token);
         $user = Auth::user();
-        if ($user == null){
+        if ($user == null) {
             return redirect('party.index');
         }
         return view('Invitation.show', compact('party', 'user'));
