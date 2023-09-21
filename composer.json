@@ -14,7 +14,9 @@
         "laravel/ui": "^4.2",
         "league/flysystem-aws-s3-v3": "^3.15",
         "orchid/platform": "^14.6",
-        "ramsey/uuid": "^4.7"
+        "ramsey/uuid": "^4.7",
+        "symfony/browser-kit": "^6.3",
+        "symfony/http-client": "^6.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

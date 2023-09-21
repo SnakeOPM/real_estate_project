@@ -13,12 +13,13 @@ return new class extends Migration {
         Schema::create('flats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('address');
             $table->smallInteger('rooms_count');
             $table->smallInteger('square');
+            $table->integer('price');
             $table->boolean('pets')->nullable();
-            $table->integer('type_id');
+            $table->integer('type_id')->nullable();
             $table->integer('agency_id')->nullable();
             $table->integer('owner_id')->nullable();
             $table->boolean('is_occupied')->default(false);
