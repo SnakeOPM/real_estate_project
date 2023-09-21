@@ -8,18 +8,18 @@ class FlatScrapper
 {
     private $client;
     private $crawler;
-    private array $names;
+    private $names;
     private $addresses;
     private $rooms;
     private $descriptions;
     private $prices;
 
-
+//TODO: FIX THIS
     public function __construct()
     {
         $this->client = new HttpBrowser();
         $this->crawler = $this->client->request('GET', 'https://www.farpost.ru/vladivostok/realty/rent_flats/');
-        $this->crawler->filter('.bulletinLink .bull-item__self-link .auto-shy')
+        $this->crawler->filter('.bull-item__self-link')
             ->each(function ($name) {
                 $this->names[] = $name->text();
                 $this->addresses[] = $name->text();
