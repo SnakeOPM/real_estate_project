@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->string('address');
             $table->smallInteger('rooms_count');
-            $table->smallInteger('square');
+            $table->smallInteger('square')->nullable();
             $table->integer('price');
             $table->boolean('pets')->nullable();
             $table->integer('type_id')->nullable();

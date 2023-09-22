@@ -27,43 +27,42 @@ class FlatScrapper
             });
         $this->crawler->filter('.bull-item__annotation-row')
         ->each(function ($node){
-            $this->descriptions[] = $node;
+            $this->descriptions[] = $node->text();
         });
         $this->crawler->filter('.price-block__price')
             ->each(function ($node){
-                $this->prices[] = $node;
+                $this->prices[] = $node->text();
             });
     }
 
     public function get_name()
     {
-        $name = preg_grep('/^[^,]*/', $this->names[0]);
+        $name = preg_grep('/^[^,]*/', $this->names);
         array_shift($this->names);
-        return $name;
+        return $name[0];
     }
 
     public function get_address()
     {
-        $name = preg_grep('/(?<=,\s).*/', $this->addresses[0]);
+        $name = preg_grep('/(?<=,\s).*/', $this->addresses);
         array_shift($this->addresses);
-        return $name;
+        return $name[0];
     }
 
     public function get_rooms_count()
     {
-        $name = preg_grep('/^./', $this->rooms[0]);
-        if ($name == 'Г' | 'К' | 'C'){
+        if ($this->rooms[0][0] == 'Г' || 'К' || 'C'){
             return 1;
         }
         array_shift($this->rooms);
-        return intval($name);
+        return intval($this->rooms[0][0]);
     }
 
     public function get_price()
     {
         $name = $this->prices[0];
         array_shift($this->addresses);
-        return $name;
+        return $name[0];
     }
 
 

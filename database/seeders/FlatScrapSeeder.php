@@ -13,6 +13,6 @@ class FlatScrapSeeder extends Seeder
      */
     public function run(): void
     {
-        Flat::factory()->count(10)->create();
+        Flat::factory()->count(5)->create();
     }
 }

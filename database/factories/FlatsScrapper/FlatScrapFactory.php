@@ -31,13 +31,14 @@ class FlatScrapFactory extends Factory
                                 ?Collection $recycle = null)
     {
         parent::__construct($count, $states, $has, $for, $afterMaking, $afterCreating, $connection, $recycle);
-        $this->scrapper = new FlatScrapper();
+
 
     }
 
 
     public function definition(): array
     {
+        $this->scrapper = new FlatScrapper();
         return [
             'name' => $this->scrapper->get_name(),
             'address' => $this->scrapper->get_address(),
