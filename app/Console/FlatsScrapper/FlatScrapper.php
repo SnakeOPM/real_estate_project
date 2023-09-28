@@ -3,14 +3,15 @@
 namespace App\Console\FlatsScrapper;
 
 use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\DomCrawler\Crawler;
 
 class FlatScrapper
 {
-    private $client;
-    private $crawler;
-    private $names;
-    private $descriptions;
-    private $prices;
+    private HttpBrowser $client;
+    private Crawler $crawler;
+    private array $names;
+    private array $descriptions;
+    private array $prices;
 
 //TODO: Fix prices and rooms count
     public function __construct()
@@ -31,37 +32,43 @@ class FlatScrapper
             });
     }
 
-    public function get_name()
+    public function get_name(): string
     {
         preg_match('/^[^,]*/', $this->names[0], $name);
         return $name[0];
     }
 
-    public function get_address()
+    public function get_address(): string
     {
         preg_match('/(?<=,\s).*/', $this->names[0], $name);
         return $name[0];
     }
 
-    public function get_rooms_count()
+    public function get_rooms_count(): int
     {
-        if ($this->names[0][0] == 'Г' || 'К' || 'C') {
+        $allowed_first_letters = ['Г', 'К', 'C'];
+        $first_letter = mb_substr($this->names[0], 0, 1, "UTF-8");
+        if (in_array($first_letter, $allowed_first_letters)) {
             return 1;
         }
-        $name = $this->names[0][0];
-        return intval($name[0]);
+        return intval($first_letter);
     }
 
-    public function get_price()
+    public function get_price(): int
     {
         preg_match('/[\d+\s]+/', $this->prices[0], $name);
         return intval(str_replace(' ', '', $name[0]));
     }
 
-    public function shift()
+    public function shift(): void
     {
         array_shift($this->names);
         array_shift($this->descriptions);
         array_shift($this->prices);
+    }
+
+    public function is_empty() : bool
+    {
+        return empty($this->names);
     }
 }

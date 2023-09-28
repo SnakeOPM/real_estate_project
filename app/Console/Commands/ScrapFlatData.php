@@ -40,8 +40,10 @@ class ScrapFlatData extends Command
 
     public function handle()
     {
-    for ($i = 1; $i < 51; $i++)
+        $this->scrapper->is_empty() ? $this->info('Data is empty') : null;
+    for ($i = 1; $i <= 50; $i++)
     {
+
         $data = [
             'name' => $this->scrapper->get_name(),
             'address' => $this->scrapper->get_address(),
