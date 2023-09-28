@@ -40,7 +40,7 @@ class ScrapFlatData extends Command
 
     public function handle()
     {
-    for ($i = 1; $i < 50; $i++)
+    for ($i = 1; $i < 51; $i++)
     {
         $data = [
             'name' => $this->scrapper->get_name(),
@@ -49,6 +49,7 @@ class ScrapFlatData extends Command
             'rooms_count' => $this->scrapper->get_rooms_count()
         ];
         $this->service->store($data);
+        $this->scrapper->shift();
     }
     $this->info('done');
 

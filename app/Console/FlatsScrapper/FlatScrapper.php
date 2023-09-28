@@ -9,8 +9,6 @@ class FlatScrapper
     private $client;
     private $crawler;
     private $names;
-    private $addresses;
-    private $rooms;
     private $descriptions;
     private $prices;
 
@@ -22,8 +20,6 @@ class FlatScrapper
         $this->crawler->filter('.bull-item__self-link')
             ->each(function ($name) {
                 $this->names[] = $name->text();
-                $this->addresses[] = $name->text();
-                $this->rooms[] = $name->text();
             });
         $this->crawler->filter('.bull-item__annotation-row')
             ->each(function ($node) {
@@ -38,33 +34,34 @@ class FlatScrapper
     public function get_name()
     {
         preg_match('/^[^,]*/', $this->names[0], $name);
-        array_shift($this->names);
         return $name[0];
     }
 
     public function get_address()
     {
-        preg_match('/(?<=,\s).*/', $this->addresses[0], $name);
-        array_shift($this->addresses);
+        preg_match('/(?<=,\s).*/', $this->names[0], $name);
         return $name[0];
     }
 
     public function get_rooms_count()
     {
-        if ($this->rooms[0][0] == 'Г' || 'К' || 'C') {
+        if ($this->names[0][0] == 'Г' || 'К' || 'C') {
             return 1;
         }
-        $name = $this->rooms[0][0];
-        array_shift($this->rooms);
+        $name = $this->names[0][0];
         return intval($name[0]);
     }
 
     public function get_price()
     {
         preg_match('/[\d+\s]+/', $this->prices[0], $name);
-        array_shift($this->prices);
-        return intval($name[0]);
+        return intval(str_replace(' ', '', $name[0]));
     }
 
-
+    public function shift()
+    {
+        array_shift($this->names);
+        array_shift($this->descriptions);
+        array_shift($this->prices);
+    }
 }
