@@ -41,6 +41,15 @@ Route::get('/parties/{party}', ShowController::class)->name('party.show');
 Route::get('/parties/{party}/edit', EditController::class)->name('party.edit');
 Route::patch('/parties/{party}', UpdateController::class)->name('party.update');
 
+Route::middleware('auth')->group(function (){
+    Route::get('/flats', \App\Http\Controllers\Flat\IndexController::class)->name('flat.index');
+    Route::post('/flats', \App\Http\Controllers\Flat\StoreController::class)->name('flat.store');
+    Route::get('/flats/create', \App\Http\Controllers\Flat\CreateController::class)->name('flat.create');
+    Route::get('/flats/show/{flat}', \App\Http\Controllers\Flat\ShowController::class)->name('flat.show');
+    Route::get('/flats/show/{flat}/edit', \App\Http\Controllers\Flat\EditController::class)->name('flat.edit');
+    Route::patch('/flats/show/{party}', UpdateController::class)->name('flat.update');
+});
+
 Route::get('party/invitation/{token}', \App\Http\Controllers\Invitations\ShowController::class)
     ->name('invitation.show');
 

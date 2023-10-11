@@ -12,8 +12,7 @@ class FlatScrapper
     private array $names;
     private array $descriptions;
     private array $prices;
-
-//TODO: Fix prices and rooms count
+    
     public function __construct()
     {
         $this->client = new HttpBrowser();

@@ -106,6 +106,6 @@ Route::screen('/user/create', UserCreateScreen::class)->name('platform.user.crea
 Route::screen('/flat/create', FlatCreateScreen::class)->name('platform.flat.create');
 
 
-// TODO: complete the user create screen
+
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
