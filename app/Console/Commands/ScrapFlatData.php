@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Console\FlatsScrapper\FlatScrapper;
 use Illuminate\Console\Command;
 use App\Services\Flat\Service;
-use App\Http\Requests\Flat\ScrapRequest;
 
 class ScrapFlatData extends Command
 {
