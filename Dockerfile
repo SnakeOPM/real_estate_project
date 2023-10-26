@@ -4,9 +4,9 @@ LABEL authors="joly"
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-RUN apt-get -y update; apt-get -y install curl git zip unzip wget \
+RUN apt-get -y update;dpkg --configure -a ; apt-get -y install curl git zip unzip wget \
      zlib1g-dev libicu-dev libpq-dev libpng-dev \
-    libzip-dev npm
+    libzip-dev nodejs npm
 RUN docker-php-ext-install pdo pdo_pgsql intl opcache gd zip
 WORKDIR laravel/
 COPY . .
