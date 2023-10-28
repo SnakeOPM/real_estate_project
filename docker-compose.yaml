@@ -2,6 +2,7 @@ version: "3"
 
 services:
   laravel:
+    container_name: app
     build: .
     ports:
       - "8000:8000"

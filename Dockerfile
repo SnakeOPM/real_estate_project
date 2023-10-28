@@ -10,6 +10,6 @@ RUN apt-get -y update;dpkg --configure -a ; apt-get -y install curl git zip unzi
 RUN docker-php-ext-install pdo pdo_pgsql intl opcache gd zip
 WORKDIR laravel/
 COPY . .
-RUN npm run build
-CMD bash -c "composer install && php artisan serve --host 0.0.0.0"
+RUN npm install && npm run build
+CMD bash -c "composer install && php artisan migrate && php artisan serve --host 0.0.0.0"
 
