@@ -5,9 +5,14 @@ namespace App\Services\User;
 use App\Models\User;
 use App\Models\UserAvatar;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Service
 {
+    public function attachCurrentUserToParty($id, $party_id): void
+    {
+        DB::table('users')->where('id', $id)->update(['party_id' => $party_id]);
+    }
     public function store($data, $file = null)
     {
         if ($file != null){

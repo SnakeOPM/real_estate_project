@@ -8,6 +8,7 @@ use App\Http\Controllers\Party\CreateController;
 use App\Http\Controllers\Party\ShowController;
 use App\Http\Controllers\Party\StoreController;
 use App\Http\Controllers\Party\EditController;
+use App\Http\Controllers\Invitations\ShowController as ShowInventation;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/parties', IndexController::class)->name('party.index');
-Route::get('/parties/create', CreateController::class)->name('party.create');
-Route::post('/parties', StoreController::class)->name('party.store');
-Route::get('/parties/{party}', ShowController::class)->name('party.show');
-Route::get('/parties/{party}/edit', EditController::class)->name('party.edit');
-Route::patch('/parties/{party}', UpdateController::class)->name('party.update');
+Route::middleware('auth')->group(function (){
+    Route::get('/parties', IndexController::class)->name('party.index');
+    Route::get('/parties/create', CreateController::class)->name('party.create');
+    Route::post('/parties', StoreController::class)->name('party.store');
+    Route::get('/parties/{party:invite_token}', ShowController::class)->name('party.show');
+    Route::get('/parties/{party:invite_token}/join', ShowInventation::class)->name('inventation.show')
+    ->scopeBindings();
+    Route::patch('/parties/{party}', UpdateController::class)->name('party.update');
+});
 
 Route::middleware('auth')->group(function (){
     Route::get('/flats', \App\Http\Controllers\Flat\IndexController::class)->name('flat.index');
@@ -49,12 +53,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/flats/show/{flat}/edit', \App\Http\Controllers\Flat\EditController::class)->name('flat.edit');
     Route::patch('/flats/show/{party}', UpdateController::class)->name('flat.update');
 });
+Route::middleware('auth')->group(function (){
+    Route::post('party/invitation', \App\Http\Controllers\Invitations\StoreController::class)
+    ->name('invitation.accept');
 
-Route::get('party/invitation/{token}', \App\Http\Controllers\Invitations\ShowController::class)
-    ->name('invitation.show');
-
-Route::post('party/invitation', \App\Http\Controllers\Invitations\StoreController::class)
-->name('invitation.accept');
+});
 
 
 require __DIR__.'/auth.php';

@@ -58,6 +58,10 @@ class FlatScrapper
         preg_match('/[\d+\s]+/', $this->prices[0], $name);
         return intval(str_replace(' ', '', $name[0]));
     }
+    public function get_description(): string
+    {
+        return $this->descriptions[0];
+    }
 
     public function shift(): void
     {

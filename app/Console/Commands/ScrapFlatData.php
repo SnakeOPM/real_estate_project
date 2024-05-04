@@ -45,6 +45,7 @@ class ScrapFlatData extends Command
 
         $data = [
             'name' => $this->scrapper->get_name(),
+            'description' => $this->scrapper->get_description(),
             'address' => $this->scrapper->get_address(),
             'price' => $this->scrapper->get_price(),
             'rooms_count' => $this->scrapper->get_rooms_count()

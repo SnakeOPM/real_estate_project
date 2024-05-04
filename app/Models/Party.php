@@ -33,7 +33,10 @@ class Party extends Model
 {
     use HasFactory;
     protected $guarded = false;
-
+    public function getRouteKeyName(): string
+    {
+        return 'invite_token';
+    }
     public function flats()
     {
         return $this->belongsToMany(Flat::class, 'flat_parties', 'party_id', 'flat_id');

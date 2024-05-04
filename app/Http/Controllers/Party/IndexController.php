@@ -11,7 +11,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $party_data = $this->service->get_index();
-        return view('Party.index', compact('party_data'));
+        $parties = $this->service->get_index();
+        return view('Party.index', compact('parties'));
     }
 }

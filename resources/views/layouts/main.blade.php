@@ -58,7 +58,7 @@
     </nav>
 
 
-    <div class="container mt-8"
+    <div class="container mt-8">
     @yield('content')
 </div>
 </div>

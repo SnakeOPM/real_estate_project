@@ -14,6 +14,6 @@ class Service
     }
     public function addUserToParty($data)
     {
-        DB::table('users')->where('id', $data['user_id'])->update(['party_id' => $data['party_id']]);
+        DB::table('users')->where('id', $data['id'])->update(['party_id' => $data['party_id']]);
     }
 }

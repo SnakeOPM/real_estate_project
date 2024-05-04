@@ -12,7 +12,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $data = Flat::paginate(15);
+        $data = Flat::paginate(25);
         return view('Flat.index', compact('data'));
     }
 }

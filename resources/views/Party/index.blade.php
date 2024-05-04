@@ -1,4 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    this is party index page
+    @foreach ($parties as $party)
+    <li class="item">{{$party->name}} | {{$party->flat_prefer_id}} | {{$party->is_active}}</li>
+    @endforeach
 @endsection
