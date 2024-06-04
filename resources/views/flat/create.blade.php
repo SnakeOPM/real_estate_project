@@ -1,4 +1,9 @@
 @extends('layouts.main')
 @section('content')
-    this is flat create page
+    <form action="{{route('flat.store')}}" method="POST">
+    @csrf
+    <input type="text" name="">
+    <button type="submit">Создать</button>
+
+    </form>
 @endsection

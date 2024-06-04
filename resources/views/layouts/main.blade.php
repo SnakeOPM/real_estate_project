@@ -26,14 +26,6 @@
                         <a href="{{route('party.index')}}"
                            class="nav-link">Parties</a>
                 </nav>
-                <form action="https://material-blog-pro-laravel.creative-tim.com/search" class="form-inline ml-3">
-                    <div class="form-group no-border nav-category-search bmd-form-group">
-                        <input type="text" class="form-control" name="searching" placeholder="Search">
-                    </div>
-                    <button type="submit" style="margin-right: 30px;" class="btn btn-white btn-just-icon btn-round">
-                        <i class="material-icons">search</i>
-                    </button>
-                </form>
             </div>
         </div>
     </nav>
