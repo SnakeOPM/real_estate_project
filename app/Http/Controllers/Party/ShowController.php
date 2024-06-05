@@ -10,6 +10,7 @@ class ShowController extends BaseController
 {
     public function __invoke(Party $party)
     {
-        return view('party.show', compact('party'));
-    }
+        $users = $party->users()->get();
+        return view('party.show', compact('party', 'users'));   
+    }   
 }
